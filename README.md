@@ -1,5 +1,8 @@
 # Ambiente Docker para Desenvolvimento
 
+![image](https://github.com/charllyslima/language-stack-docker/assets/96506145/e244f60a-4dfb-467f-a793-147a5cefabf7)
+
+
 Este repositório contém um exemplo de configuração de um ambiente Docker para desenvolvimento que inclui serviços PHP, Python, Node.js, Jupyter Notebook, PHPMyAdmin e MySQL. Você pode usar este ambiente para desenvolver aplicativos web e realizar análises de dados em um ambiente Dockerizado.
 
 ## Requisitos
