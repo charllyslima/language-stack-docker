@@ -6,7 +6,7 @@ services:
     restart: always
     command: tail -f /dev/null
     volumes:
-      - ./php-app:/var/www/php-app
+      - php-app:/var/www/php-app
     networks:
       - my_network
 
@@ -16,7 +16,7 @@ services:
     restart: always
     command: tail -f /dev/null
     volumes:
-      - ./python-app:/app
+      - python-app:/app
     networks:
       - my_network
 
@@ -26,7 +26,7 @@ services:
     restart: always
     command: tail -f /dev/null
     volumes:
-      - ./node-app:/usr/src/app
+      - node-app:/usr/src/app
     networks:
       - my_network
 
@@ -37,7 +37,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./jupyter-notebook:/home/jovyan
+      - jupyter-notebook:/home/jovyan
     networks:
       - my_network
 
@@ -54,19 +54,25 @@ services:
 
   mysql:
     image: mysql:latest
-    container_name: mysql_container
-    restart: always
     command: --default-authentication-plugin=mysql_native_password
-    ports:
-    - "3306:3306"
-    expose:
-      - "3306"
+    restart: always
     env_file:
       - .env
+    ports:
+      - '5959:3306'
+    expose:
+      - '5959'
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - my-db:/var/lib/mysql
     networks:
       - my_network
 
+
 networks:
   my_network:
+volumes:
+  my-db:
+  php-app:
+  node-app:
+  python-app:
+  jupyter-notebook:
