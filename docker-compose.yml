@@ -1,15 +1,23 @@
 version: '3'
 services:
   php83:
-    image: php:latest
-    container_name: php_container
+    build:
+      context: ./php # Use o diretório atual como contexto
+      dockerfile: Dockerfile
+    container_name: php
+    volumes:
+      - ./php/php-projects:/var/www/html
+    restart: always
+  composer:
+    image: composer:latest
+    container_name: composer_container
     restart: always
     command: tail -f /dev/null
     volumes:
-      - php-app:/var/www/php-app
+      - composer-apps:/var/www/php-app
+      - ./:/app
     networks:
       - my_network
-
   python:
     image: python:latest
     container_name: python_container
@@ -76,3 +84,4 @@ volumes:
   node-app:
   python-app:
   jupyter-notebook:
+  composer-apps:
